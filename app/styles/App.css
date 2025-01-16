@@ -7,19 +7,23 @@ body {
   font: 14px "Lucida Sans Unicode", "Lucida Grande", Helvetica, Arial, sans-serif;
   color: white;
   background: hsl(37, 10%, 8%) linear-gradient(to bottom, hsl(37, 12%, 16%), hsl(37, 10%, 8%) 116px) no-repeat;
+  width: 100%;
+  height: 100vh;
 }
   
 .App {
   width: 100%;
   height: calc(100%-60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
 .board {
-  margin: 0 auto;
   margin-top: 15px;
   display: grid;
   width: 40%;
-  max-width: 1500px;
   aspect-ratio: 1 / 1;
   grid-template-columns: repeat(8, 12.5%);
   grid-template-rows: repeat(8, 12.5%);
@@ -31,6 +35,16 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
+  cursor: pointer;
+  transition: .1s;
+}
+
+.cell:hover {
+  filter: brightness(90%);
+}
+
+.cell:active {
+  filter: brightness(70%);
 }
 
 .cell span {
@@ -78,39 +92,136 @@ body {
 }
 
 .lost {
-  height: calc(50vh - 60px);
-  min-width: 100px;
-  padding: 30px;
+  position: absolute;
+  height: 400px;
+  width: 40vh;
+  left: 70%;
   margin-left: 50px;
-  background: #8c5d8e;
+  background: #262421;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-  
-  .timer {
-  margin-right: 50px;
-  height: calc(100vh - 60px);
+
+.lost .enemy {
+  position: absolute;
+  width: 100%;
+  height: 80px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: #8c5d8e;
-  padding: 30px;
 }
-  
-.timer button {
-  padding: 5px;
-  background: #503350;
-  min-width: 180px;
-  color: white;
+
+.lost .main {
+  position: absolute;
+  top: 80px;
+  width: 100%;
+  height: 220px;
+  top: 20%;
+}
+
+.lost .main .content {
+  position: absolute;
+  height: 170px;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.lost .main .content .line {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lost .main .content .line div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: hsl(0, 0%, 58%);
+}
+
+.lost .main .content .line div:nth-child(1) {
+  width: 16.66%;
+  height: 100%;
+  background: #33312e;
+}
+
+.lost .main .content .line div:nth-child(2) {
+  width: 41.67%;
+}
+
+.lost .main .content .line div:nth-child(3) {
+  width: 41.67%;
+}
+
+.lost .main nav {
+  height: 50px;
+  width: 100%;
+  display: flex;
+}
+
+.lost .main nav ul {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.lost .main nav ul li {
+  height: 50px;
+  width: 16.66%;
+  background: #33312e;
   cursor: pointer;
-  border: 1px solid #352235;
-  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: .2s;
 }
-  
-.timer button:hover {
-  background: #352235;
+
+.lost .main nav ul li:not(.lost .main nav ul li:nth-child(1)) {
+  border-bottom: 2px solid #212121;
 }
-  
-.timer button:active {
-  background: #1c121c;
+
+.lost .main nav ul li:hover {
+  background: #5c8e23;
+}
+
+.lost .player {
+  position: absolute;
+  width: 100%;
+  height: 80px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+.lost .status {
+  height: 20px;
+  width: 20px;
+  background: #5c8e23;
+  margin: 10px;
+  border-radius: 50%;
+}
+
+.lost h1.player_title {
+  width: 100%;
+  height: 100%;
+  font-size: 1.2rem;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: hsl(0, 0%, 58%);
+}
+
+.lost h1.player_title.active {
+  animation: colorChange 1.5s infinite;
+}
+
+@keyframes colorChange {
+  0% { color: hsl(0, 0%, 58%); }
+  50% { color: #fc6a6a; }
+  100% { color: hsl(0, 0%, 58%); }
 }
   
 .buttons {
@@ -150,4 +261,14 @@ body {
 
 .nav h1 {
   font-size: 1.3rem;
+}
+
+@media screen and (max-width: 1550px) {
+  .nav ul:nth-child(1) {
+    display: none;
+  }
+
+  .lost {
+    display: none;
+  }
 }

@@ -48,6 +48,7 @@ export default function Home() {
               currentPlayer={currentPlayer}
               swapPlayer={swapPlayer}
           />
+          <RightAside board={board} currentPlayer={currentPlayer}/>
       </div>
   );
 }
