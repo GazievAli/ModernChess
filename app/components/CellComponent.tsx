@@ -16,7 +16,7 @@ const CellComponent: FC<CellProps> = ({cell, selected, click, showCoordinates}) 
         <div
             className={['cell', cell.color, selected ? "selected" : ''].join(' ')}
             onClick={() => click(cell)}
-            style={{background: cell.available && cell.figure ? '#8c5d8e' : ''}}
+            style={{background: cell.available && cell.figure ? '#829769' : ''}}
         >
             {showCoordinates && (<span className="coordinates">{getCoords(cell.x)}{8 - cell.y}</span>)}
             {cell.available && !cell.figure && <div className={"available"}/>}
