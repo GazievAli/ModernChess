@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    background: #121212;
+    font: 14px "Lucida Sans Unicode", "Lucida Grande", Helvetica, Arial, sans-serif;
+    color: white;
+  }
+  
+  .App {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .board {
+    width: calc(64PX * 8);
+    height: calc(64PX * 8);
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .cell {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .cell span {
+    position: absolute;
+    margin-bottom: 40px;
+    margin-right: 40px;
+    font-size: 0.8em;
+    color: #aeccf1;
+  }
+  
+  .cell img {
+    width: 48px;
+    height: 48px;
+    position: relative;
+  }
+  
+  .black {
+    background: #637893;
+  }
+  
+  .white {
+    background: #a0a9ba;
+  }
+  
+  .selected {
+    background: #8c5d8e;
+  }
+  
+  .available {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #8c5d8e;
+  }
+  
+  .lost {
+    height: calc(50vh - 60px);
+    min-width: 100px;
+    padding: 30px;
+    margin-left: 50px;
+    background: #8c5d8e;
+  }
+  
+  .timer {
+    margin-right: 50px;
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #8c5d8e;
+    padding: 30px;
+  }
+  
+  .timer button {
+    padding: 5px;
+    background: #503350;
+    min-width: 180px;
+    color: white;
+    cursor: pointer;
+    border: 1px solid #352235;
+    transition: 0.3s;
+  }
+  
+  .timer button:hover {
+    background: #352235;
+  }
+  
+  .timer button:active {
+    background: #1c121c;
+  }
+  
+  .buttons {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
