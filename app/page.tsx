@@ -8,6 +8,7 @@ import {Player} from "./models/Player";
 import {Colors} from "./models/Colors";
 import Timer from "./components/Timer";
 import RightAside from "./components/RightAside";
+import Head from 'next/head';
 
 export default function Home() {
   const [board, setBoard] = useState(new Board());
@@ -18,9 +19,9 @@ export default function Home() {
   const blackPlayer = new Player(Colors.BLACK);
 
   useEffect(() => {
-      restart()
-      setCurrentPlayer(whitePlayer)
-  }, [])
+    restart()
+    setCurrentPlayer(whitePlayer);
+}, [])
 
   function restart() {
       const newBoard = new Board();
@@ -46,7 +47,6 @@ export default function Home() {
               setBoard={setBoard}
               currentPlayer={currentPlayer}
               swapPlayer={swapPlayer}
-              showCoordinates={showCoordinates}
           />
       </div>
   );

@@ -8,17 +8,20 @@ interface CellProps {
     cell: Cell;
     selected: boolean;
     click: (cell: Cell) => void;
-    showCoordinates: boolean;
 }
 
-const CellComponent: FC<CellProps> = ({cell, selected, click, showCoordinates}) => {
+const CellComponent: FC<CellProps> = ({cell, selected, click}) => {
+    const isBottomRow = cell.y === 7;
+    const isLeftColumn = cell.x === 7;
+
     return (
         <div
             className={['cell', cell.color, selected ? "selected" : ''].join(' ')}
             onClick={() => click(cell)}
             style={{background: cell.available && cell.figure ? '#829769' : ''}}
         >
-            {showCoordinates && (<span className="coordinates">{getCoords(cell.x)}{8 - cell.y}</span>)}
+             {isLeftColumn && <span className="nums">{8 - cell.y}</span>}
+            {isBottomRow && <span className="letters">{getCoords(cell.x)}</span>}
             {cell.available && !cell.figure && <div className={"available"}/>}
             {cell.figure?.logo && <Image src={cell.figure.logo} alt={cell.figure.name}/> }
         </div>

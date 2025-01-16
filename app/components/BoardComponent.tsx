@@ -9,11 +9,10 @@ interface BoardProps {
     board: Board;
     currentPlayer: Player | null;
     setBoard: (board: Board) => void;
-    showCoordinates: boolean;
     swapPlayer: () => void;
 }
 
-const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, swapPlayer, showCoordinates}) => {
+const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, swapPlayer}) => {
     const [selectedCell, setSelectedCell] = useState<Cell | null>(null);
 
     function click(cell: Cell) {
@@ -54,7 +53,6 @@ const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, swapPla
                                 cell={cell}
                                 key={cell.id}
                                 selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
-                                showCoordinates={showCoordinates}
                             />
                         )}
                     </React.Fragment>
