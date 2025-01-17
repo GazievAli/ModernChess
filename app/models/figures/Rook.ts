@@ -6,10 +6,10 @@ import blackLogo from "../../assets/BR.svg";
 import whiteLogo from "../../assets/WR.svg";
 
 export class Rook extends Figure {
-    constructor(color: Colors, cells: Cell) {
-        super(color, cells);
-        this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
-        this.name = FigureNames.ROOK;
+    isFirstStep: boolean = true;
+
+    constructor(color: Colors, cell: Cell) { // Изменено здесь
+        super(color, cell, color === Colors.BLACK ? blackLogo : whiteLogo, FigureNames.ROOK);
     }
 
     canMove(target: Cell): boolean {
@@ -23,5 +23,10 @@ export class Rook extends Figure {
             return true;
         }
         return false;
+    }
+
+    moveFigure(target: Cell): void {
+        super.moveFigure(target);
+        this.isFirstStep = false;
     }
 }

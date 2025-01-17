@@ -42,20 +42,31 @@ const BoardComponent: FC<BoardProps> = ({board, setBoard, currentPlayer, swapPla
         setBoard(newBoard)
     }
 
+    const letters = ["A", "B", "C", "D", "E", "F", "G", "H"];
+    const nums = ["8", "7", "6", "5", "4", "3", "2", "1"];
+
     return (
-        <div className="board">
-            {board.cells.map((row, index) =>
-                <React.Fragment key={index}>
-                    {row.map(cell =>
-                        <CellComponent
-                            click={click}
-                            cell={cell}
-                            key={cell.id}
-                            selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y}
-                        />
-                    )}
-                </React.Fragment>
-            )}
+            <div className="board">
+                {board.cells.map((row, y) =>
+                    <React.Fragment key={y}>
+                        {row.map((cell, x) => {
+                            const isBottomRow = y === 7;
+                            const isLeftColumn = x === 0;
+                            return (
+                                <CellComponent
+                                    click={click}
+                                    cell={cell}
+                                    key={cell.id}
+                                    selected={cell.x === selectedCell?.x && cell.y === selectedCell?.y
+                                    }
+                                >
+                                    {isBottomRow && <span className="letters">{letters[x]}</span>}
+                                    {isLeftColumn && <span className="nums">{nums[y]}</span>}
+                                </CellComponent>
+                            )
+                        })}
+                    </React.Fragment>
+                )}
         </div>
     );
 };

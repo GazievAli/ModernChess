@@ -13,42 +13,39 @@ interface TimerProps {
 const Timer: FC<TimerProps> = ({currentPlayer, restart, handleCoordinates, showCoordinates}) => {
     const [blackTime, setBlackTime] = React.useState(300);
     const [whiteTime, setWhiteTime] = React.useState(300);
-    const timer = useRef<null | ReturnType<typeof setInterval>>(null)
+    const timerRef = useRef<null | ReturnType<typeof setInterval>>(null); // Используем useRef правильно
 
     useEffect(() => {
-        startTimer()
+        startTimer();
+        return () => { // Добавляем cleanup функцию
+            if (timerRef.current) {
+                clearInterval(timerRef.current);
+            }
+        };
     }, [currentPlayer]);
 
-    function  startTimer() {
-        if (timer.current) {
-            clearInterval(timer.current);
+    function startTimer() {
+        if (timerRef.current) {
+            clearInterval(timerRef.current);
         }
 
         const callback = currentPlayer?.color === Colors.WHITE ? decrementWhiteTimer : decrementBlackTimer;
-        timer.current = setInterval(callback, 1000);
+        timerRef.current = setInterval(callback, 1000);
     }
 
     function decrementBlackTimer() {
-        if (whiteTime > 0) {
-            setWhiteTime(prev => prev - 1);
-        } else {
-
-        }
+        setBlackTime(prev => Math.max(0, prev - 1)); // Предотвращаем отрицательные значения
     }
 
     function decrementWhiteTimer() {
-        if (whiteTime > 0) {
-            setWhiteTime(prev => prev - 1);
-        } else {
-
-        }
+        setWhiteTime(prev => Math.max(0, prev - 1)); // Предотвращаем отрицательные значения
     }
 
     const handleRestart = () => {
         setWhiteTime(300);
         setBlackTime(300);
         restart();
-    }
+    };
 
     return (
         <div className="timer">

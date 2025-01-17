@@ -13,8 +13,8 @@ interface AsideProps {
 
 const RightAside:FC<AsideProps> = ({ board, currentPlayer }) => {
 
-    const enemyName = "Robert"
-    const playerName = "AliGaziev"
+    const enemyName = "Robert 2054 elo"
+    const playerName = "AliGaziev 2100 elo"
     const buttos = ["1", "2", "3", "4", "5", "6"]
     const movesList = [{
         moves: 1,

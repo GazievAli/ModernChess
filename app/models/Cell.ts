@@ -49,7 +49,7 @@ export class Cell {
     }
 
     isEmptyHorizontal(target: Cell): boolean {
-        if (this.y !== target.y) {
+          if (this.y !== target.y) {
             return false;
         }
 
@@ -62,6 +62,7 @@ export class Cell {
         }
         return true;
     }
+
 
     isEmptyDiagonal(target: Cell): boolean {
         const absX = Math.abs(target.x - this.x);
@@ -90,13 +91,14 @@ export class Cell {
             : this.board.lostWhiteFigures.push(figure)
     }
 
-    moveFigure(target: Cell) {
+     moveFigure(target: Cell) {
         if(this.figure && this.figure?.canMove(target)) {
-            this.figure.moveFigure(target);
-            if(target.figure) {
+           const tempFigure = this.figure
+             if(target.figure) {
                 this.addLostFigure(target.figure);
             }
-            target.setFigure(this.figure);
+            target.setFigure(tempFigure);
+             tempFigure.moveFigure(target)
             this.figure = null;
         }
     }

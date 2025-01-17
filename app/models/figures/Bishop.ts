@@ -7,13 +7,12 @@ import whiteLogo from "../../assets/WB.svg";
 
 export class Bishop extends Figure {
 
-    constructor(color: Colors, cells: Cell) {
-        super(color, cells);
-        this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
-        this.name = FigureNames.BISHOP;
+    constructor(color: Colors, cell: Cell) {
+        super(color, cell, color === Colors.BLACK ? blackLogo : whiteLogo, FigureNames.BISHOP);
     }
 
     canMove(target: Cell): boolean {
+        if(!super.canMove(target)) return false;
         if(this.cell.isEmptyDiagonal(target)) {
             return true;
         }

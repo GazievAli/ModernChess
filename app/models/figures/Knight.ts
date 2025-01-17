@@ -6,10 +6,8 @@ import blackLogo from "../../assets/BN.svg";
 import whiteLogo from "../../assets/WN.svg";
 
 export class Knight extends Figure {
-    constructor(color: Colors, cells: Cell) {
-        super(color, cells);
-        this.logo = color === Colors.BLACK ? blackLogo : whiteLogo;
-        this.name = FigureNames.KNIGHT;
+    constructor(color: Colors, cell: Cell) {
+        super(color, cell, color === Colors.BLACK ? blackLogo : whiteLogo, FigureNames.KNIGHT);
     }
 
     canMove(target: Cell): boolean {

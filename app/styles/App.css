@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
 }
-  
+
 body {
   font: 14px "Lucida Sans Unicode", "Lucida Grande", Helvetica, Arial, sans-serif;
   color: white;
@@ -115,6 +115,22 @@ body {
   width: 100%;
   height: 220px;
   top: 20%;
+}
+
+.lost .main ::-webkit-scrollbar {
+  width: 10px;
+}
+
+.lost .main ::-webkit-scrollbar-track {
+  background: #33312e;
+}
+
+.lost .main ::-webkit-scrollbar-thumb {
+  background: #413f3d;
+}
+
+.lost .main ::-webkit-scrollbar-thumb:hover {
+  background: #262421;
 }
 
 .lost .main .content {

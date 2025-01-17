@@ -8,6 +8,7 @@ interface CellProps {
     cell: Cell;
     selected: boolean;
     click: (cell: Cell) => void;
+    children?: React.ReactNode;
 }
 
 const CellComponent: FC<CellProps> = ({cell, selected, click}) => {
